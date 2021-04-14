@@ -30,6 +30,17 @@ const reducer = (state = initialState, action) => {
                 results: state.results.concat({ id: new Date(), value: state.counter})
                 // concat is kind of a push. Push manipulates original array, but concat returns new array where the new value is added to old array 
             }
+        case 'DELETE_RESULT':
+            // const id = 2;
+            // const newArray = [...state.results]; // creating a copy of the array
+            // newArray.splice(id, 1); // updating created array
+            
+            // filter will copy of old array and takes a function as a property which it will execute on every element in that array
+            const newArray = state.results.filter(result => result.id !== action.resultElId); // return true if id is not id from action
+            return  {
+                ...state,
+                results: newArray // storing updated newArray to old array
+            }
     }
     return state;
     // if(action.type === 'INCREMENT') {
