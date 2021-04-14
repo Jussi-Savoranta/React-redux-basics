@@ -1,3 +1,5 @@
+import * as actionTypes from './actions';
+
 const initialState = {
     counter: 0,
     results: []
@@ -5,32 +7,32 @@ const initialState = {
 
 const reducer = (state = initialState, action) => {
     switch (action.type) {
-        case 'INCREMENT':
+        case actionTypes.INCREMENT:
             const newState = Object.assign({}, state); // creates new js-object and distributes old state values to it
             newState.counter = state.counter +1;    // updating the newState
             return newState;                        // overwriting only this property to the state
-        case 'DECREMENT':
+        case actionTypes.DECREMENT:
             return {
                 ...state, // spread operator does the same exact thing as above, but is shorter way of writing it
                 counter: state.counter - 1 // this leaves state.results untouched, it doesn't overwrite that
             }
-        case 'ADD':
+        case actionTypes.ADD:
             return {
                 ...state,
                 counter: state.counter + action.value
             }
-        case 'SUBTRACT':
+        case actionTypes.SUBTRACT:
             return {
                 ...state,
                 counter: state.counter - action.value
             }
-        case 'STORE_RESULT':
+        case actionTypes.STORE_RESULT:
             return {
                 ...state,
                 results: state.results.concat({ id: new Date(), value: state.counter})
                 // concat is kind of a push. Push manipulates original array, but concat returns new array where the new value is added to old array 
             }
-        case 'DELETE_RESULT':
+        case actionTypes.DELETE_RESULT:
             // const id = 2;
             // const newArray = [...state.results]; // creating a copy of the array
             // newArray.splice(id, 1); // updating created array
